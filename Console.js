@@ -1,6 +1,13 @@
 async function clickButtonAndWaitForReady() {
   // Click the initial button
-  document.evaluate("/html/body/div[6]/div/div[2]/div/div/div[5]/div/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+  const initialButton = document.evaluate("/html/body/div[6]/div/div[2]/div/div/div[5]/div/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  
+  if (initialButton) {
+      initialButton.click();
+  } else {
+      console.error("Initial button not found.");
+      return; // Exit the function if the initial button is not found
+  }
 
   // Ask the user to input the URL
 
@@ -12,22 +19,28 @@ async function clickButtonAndWaitForReady() {
 
       // Locate and focus on the search box
       const searchBox = document.evaluate("/html/body/div[10]/div/form/div/input", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-      searchBox.focus();
 
-      // Fill in text in the search box using the provided URL
-      searchBox.value = "https://www.tiktok.com/@darcoxz/video/7209580265436466474";
+      if (searchBox) {
+          searchBox.focus();
+          // Fill in text in the search box using the provided URL
+          searchBox.value = "Your Video Link Here"
+      } else {
+          console.error("Search box not found.");
+          return; // Exit the function if the search box is not found
+      }
 
       // Wait for the element to load
       const buttonToClick = document.evaluate("/html/body/div[10]/div/form/div/div/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-const buttonToTry = document.evaluate("/html/body/div[10]/div/div/div[1]/div/form/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; 
-      // Check if the button is loaded and then click it
+
       if (buttonToClick) {
+          // Check if the button is loaded and then click it
           buttonToClick.click();
       } else {
           console.error("Button not found.");
+          return; // Exit the function if the button is not found
       }
 
-      // Continue in a loop until the countdown text contains "READY" or an error message
+      // Continue in a loop until the countdown text contains "READY"
       while (true) {
           // Wait for a brief moment (adjust the duration as needed)
           await new Promise(resolve => setTimeout(resolve, 2000));
@@ -44,19 +57,27 @@ const buttonToTry = document.evaluate("/html/body/div[10]/div/div/div[1]/div/for
                   break; // Exit the loop
               } else if (countdownText.includes("An error occurred. Please try again.")) {
                   console.log("Error message detected. Clicking the button to retry...");
-                  buttonToTry.click(); // Click the button to retry
+
+                  // Click the button to retry
+                  const retryButton = document.evaluate("/html/body/div[10]/div/div/div[1]/div/form/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                  
+                  if (retryButton) {
+                      retryButton.click();
+                  } else {
+                      console.error("Retry button not found.");
+                      return; // Exit the function if the retry button is not found
+                  }
               }
           } else {
               console.error("Countdown element not found.");
-              break; // Exit the loop in case of an error
+              return; // Exit the function in case of an error
           }
       }
 
       // Repeat the process
       clickButtonAndWaitForReady();
-
-  }
-
+    }
 
 // Start the script
 clickButtonAndWaitForReady();
+  
