@@ -3,10 +3,10 @@ async function clickButtonAndWaitForReady() {
   document.evaluate("/html/body/div[6]/div/div[2]/div/div/div[5]/div/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
 
   // Ask the user to input the URL
-  const url = prompt("Please enter the URL:");
+
 
   // Check if the user provided a valid URL
-  if (url) {
+
       // Wait for 3 seconds (3000 milliseconds)
       await new Promise(resolve => setTimeout(resolve, 3000));
 
@@ -15,7 +15,7 @@ async function clickButtonAndWaitForReady() {
       searchBox.focus();
 
       // Fill in text in the search box using the provided URL
-      searchBox.value = url;
+      searchBox.value = "https://www.tiktok.com/@darcoxz/video/7209580265436466474";
 
       // Wait for the element to load
       const buttonToClick = document.evaluate("/html/body/div[10]/div/form/div/div/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -54,10 +54,9 @@ const buttonToTry = document.evaluate("/html/body/div[10]/div/div/div[1]/div/for
 
       // Repeat the process
       clickButtonAndWaitForReady();
-  } else {
-      console.error("Invalid URL or no URL provided.");
+
   }
-}
+
 
 // Start the script
 clickButtonAndWaitForReady();
