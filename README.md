@@ -12,6 +12,7 @@ You can use this in any browser that supports Java and a console
 
 
 # Instructions:
+Copy the Console.js Code
 Go to Zefoy
 Solve the Captcha
 Remain on the home page
