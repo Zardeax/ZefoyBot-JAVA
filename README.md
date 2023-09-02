@@ -1,4 +1,7 @@
 # ZefoyBot-JAVA
+
+# Don't skid this >:(
+
 Doesn't require anything else but a browser and it's console
 DOES NOT REQUIRE SELENIUM!
 Note: Yes this is 100% real! I will make a youtube video on this code soon!
