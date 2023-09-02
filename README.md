@@ -1,6 +1,9 @@
 # ZefoyBot-JAVA
+Created by Zardeax
+Discord: iheartcoy
 
 # Don't skid this >:(
+This is the only working code that is public. Any other code you might see might be fake or skidded off of this!
 
 Doesn't require anything else but a browser and it's console
 DOES NOT REQUIRE SELENIUM!
